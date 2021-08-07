@@ -201,7 +201,7 @@ int bitCount(int x) {
 
 	// Ref:http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSet64
 	
-	unsigned c = x - ((x >> 1) & mask1);
+	int c = x + ~((x >> 1) & mask1) + 1;
 	c = ((c >> 2) & mask2) + (c & mask2);
 	c = ((c >> 4) + c) & mask3;
 	c = ((c >> 8) + c) & mask4;
