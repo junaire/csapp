@@ -310,7 +310,12 @@ int ilog2(int x) {
  *   Rating: 2
  */
 unsigned float_neg(unsigned uf) {
- return 2;
+
+	// NaN: exp = 1, frac != 0
+	if((((uf >> 23) & 0xff) ^ 0xff) | !(uf << 9))
+		return (1 << 31) ^ uf;
+	// returns argument if is NaN
+	return uf;
 }
 /* 
  * float_i2f - Return bit-level equivalent of expression (float) x
