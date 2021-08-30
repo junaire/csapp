@@ -1117,17 +1117,17 @@ Disassembly of section .text:
   400f0e:	74 20                	je     400f30 <phase_2+0x34>
   400f10:	e8 25 05 00 00       	call   40143a <explode_bomb>
   400f15:	eb 19                	jmp    400f30 <phase_2+0x34>
-  400f17:	8b 43 fc             	mov    -0x4(%rbx),%eax
+  400f17:	8b 43 fc             	mov    -0x4(%rbx),%eax // get the last value, like `int tmp = arr[n - 1]`
   400f1a:	01 c0                	add    %eax,%eax
-  400f1c:	39 03                	cmp    %eax,(%rbx)
+  400f1c:	39 03                	cmp    %eax,(%rbx) // compare, like `if (arr[n-1] == tmp * 2)`
   400f1e:	74 05                	je     400f25 <phase_2+0x29>
   400f20:	e8 15 05 00 00       	call   40143a <explode_bomb>
   400f25:	48 83 c3 04          	add    $0x4,%rbx
-  400f29:	48 39 eb             	cmp    %rbp,%rbx
+  400f29:	48 39 eb             	cmp    %rbp,%rbx // check if out of index
   400f2c:	75 e9                	jne    400f17 <phase_2+0x1b>
   400f2e:	eb 0c                	jmp    400f3c <phase_2+0x40>
   400f30:	48 8d 5c 24 04       	lea    0x4(%rsp),%rbx
-  400f35:	48 8d 6c 24 18       	lea    0x18(%rsp),%rbp
+  400f35:	48 8d 6c 24 18       	lea    0x18(%rsp),%rbp // It's end flag, which means it's a for loop. 
   400f3a:	eb db                	jmp    400f17 <phase_2+0x1b>
   400f3c:	48 83 c4 28          	add    $0x28,%rsp
   400f40:	5b                   	pop    %rbx
