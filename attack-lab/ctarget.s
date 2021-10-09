@@ -1656,7 +1656,7 @@ Disassembly of section .text:
   4017ac:	48 89 e7             	mov    %rsp,%rdi
   4017af:	e8 8c 02 00 00       	call   401a40 <Gets>
   4017b4:	b8 01 00 00 00       	mov    $0x1,%eax
-  4017b9:	48 83 c4 28          	add    $0x28,%rsp
+  4017b9:	48 83 c4 28          	add    $0x28,%rsp // add rsp doesn't mean previous info has been destoryed!!!
   4017bd:	c3                   	ret    
   4017be:	90                   	nop
   4017bf:	90                   	nop
@@ -1778,7 +1778,7 @@ Disassembly of section .text:
   401968:	48 83 ec 08          	sub    $0x8,%rsp
   40196c:	b8 00 00 00 00       	mov    $0x0,%eax
   401971:	e8 32 fe ff ff       	call   4017a8 <getbuf>
-  401976:	89 c2                	mov    %eax,%edx
+  401976:	89 c2                	mov    %eax,%edx // This is the return affress
   401978:	be 88 31 40 00       	mov    $0x403188,%esi
   40197d:	bf 01 00 00 00       	mov    $0x1,%edi
   401982:	b8 00 00 00 00       	mov    $0x0,%eax

